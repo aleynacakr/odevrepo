@@ -1,0 +1,32 @@
+﻿@model KuaforRandevuSistemi.Models.Calisan
+
+<h2>Çalışan Düzenle</h2>
+
+<form asp-action="Edit" method="post">
+    <input type="hidden" name="Id" value="@Model.Id" />
+    <div class="form-group">
+        <label for="AdSoyad">Ad Soyad</label>
+        <input type="text" class="form-control" id="AdSoyad" name="AdSoyad" value="@Model.AdSoyad" required>
+    </div>
+    <div class="form-group">
+        <label for="UzmanlikAlani">Uzmanlık Alanı</label>
+        <input type="text" class="form-control" id="UzmanlikAlani" name="UzmanlikAlani" value="@Model.UzmanlikAlani">
+    </div>
+    <div class="form-group">
+        <label for="UygunlukSaatleri">Uygunluk Saatleri</label>
+        <input type="text" class="form-control" id="UygunlukSaatleri" name="UygunlukSaatleri" value="@Model.UygunlukSaatleri" required>
+    </div>
+    <div class="form-group">
+        <label for="SalonId">Salon</label>
+        <select class="form-control" id="SalonId" name="SalonId" required>
+            <!-- Salonların listesi Controller'dan gelecektir -->
+            <option value="">Salon Seçiniz</option>
+            @foreach (var salon in ViewBag.Salonlar)
+            {
+                <option value="@salon.Id" @(salon.Id == Model.SalonId ? "selected" : "")>@salon.Ad</option>
+            }
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Güncelle</button>
+    <a href="@Url.Action("Index", "Calisan")" class="btn btn-secondary">Geri</a>
+</form>

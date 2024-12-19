@@ -1,0 +1,22 @@
+﻿@model KuaforRandevuSistemi.Models.Randevu
+
+@{
+    ViewData["Title"] = "Randevu Sil";
+}
+
+<h2>Randevu Sil</h2>
+
+<p><strong>@Model.MusteriAdi</strong> adlı müşterinin aşağıdaki randevusunu silmek istediğinizden emin misiniz?</p>
+
+<ul>
+    <li>Çalışan: @Model.Calisan</li>
+    <li>İşlem: @Model.Islem</li>
+    <li>Tarih: @Model.Tarih.ToString("yyyy-MM-dd HH:mm")</li>
+    <li>Ücret: @Model.Ucret.ToString("C")</li>
+</ul>
+
+<form asp-action="Delete" method="post">
+    <input type="hidden" name="Id" value="@Model.Id" />
+    <button type="submit" class="btn btn-danger">Sil</button>
+    <a href="@Url.Action("Index", "Randevu")" class="btn btn-secondary">İptal</a>
+</form>

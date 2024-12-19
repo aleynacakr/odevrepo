@@ -1,0 +1,30 @@
+﻿@model KuaforRandevuSistemi.Models.Calisan
+
+<h2>Çalışanı Sil</h2>
+
+<p>Bu çalışanı silmek istediğinizden emin misiniz?</p>
+
+<table class="table">
+    <tr>
+        <th>Ad Soyad</th>
+        <td>@Model.AdSoyad</td>
+    </tr>
+    <tr>
+        <th>Uzmanlık Alanı</th>
+        <td>@Model.UzmanlikAlani</td>
+    </tr>
+    <tr>
+        <th>Uygunluk Saatleri</th>
+        <td>@Model.UygunlukSaatleri</td>
+    </tr>
+    <tr>
+        <th>Salon</th>
+        <td>@Model.Salon?.Ad</td>
+    </tr>
+</table>
+
+<form asp-action="DeleteConfirmed" method="post">
+    <input type="hidden" name="Id" value="@Model.Id" />
+    <button type="submit" class="btn btn-danger">Evet, Sil</button>
+    <a href="@Url.Action("Index", "Calisan")" class="btn btn-secondary">Hayır</a>
+</form>

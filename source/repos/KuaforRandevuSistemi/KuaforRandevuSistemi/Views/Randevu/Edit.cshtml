@@ -1,0 +1,47 @@
+﻿@model KuaforRandevuSistemi.Models.Randevu
+
+@{
+    ViewData["Title"] = "Randevu Düzenle";
+}
+
+<h2>Randevu Düzenle</h2>
+
+<form asp-action="Edit" method="post">
+    <input type="hidden" name="Id" value="@Model.Id" />
+
+    <div class="form-group">
+        <label for="MusteriAdi">Müşteri Adı</label>
+        <input type="text" id="MusteriAdi" name="MusteriAdi" class="form-control" value="@Model.MusteriAdi" required />
+    </div>
+
+    <div class="form-group">
+        <label for="CalisanId">Çalışan</label>
+        <select id="CalisanId" name="CalisanId" class="form-control" required>
+            <option value="">-- Seçiniz --</option>
+            @if (ViewBag.Calisanlar != null)
+            {
+                foreach (var calisan in ViewBag.Calisanlar)
+                {
+                    <option value="@calisan.Id" @(Model.CalisanId == calisan.Id ? "selected" : "")>@calisan.Ad</option>
+                }
+            }
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="Islem">İşlem</label>
+        <input type="text" id="Islem" name="Islem" class="form-control" value="@Model.Islem" required />
+    </div>
+
+    <div class="form-group">
+        <label for="Tarih">Randevu Tarihi</label>
+        <input type="datetime-local" id="Tarih" name="Tarih" class="form-control" value="@Model.Tarih.ToString("yyyy-MM-ddTHH:mm")" required />
+    </div>
+
+    <div class="form-group">
+        <label for="Ucret">Ücret</label>
+        <input type="number" id="Ucret" name="Ucret" class="form-control" step="0.01" value="@Model.Ucret" required />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Güncelle</button>
+</form>

@@ -1,0 +1,38 @@
+﻿@model List<KuaforRandevuSistemi.Models.Randevu>
+
+@{
+    ViewData["Title"] = "Randevu Listesi";
+}
+
+<h2>Randevular</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Müşteri Adı</th>
+            <th>Çalışan</th>
+            <th>İşlem</th>
+            <th>Tarih</th>
+            <th>Ücret</th>
+            <th>İşlemler</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var randevu in Model)
+        {
+            <tr>
+                <td>@randevu.MusteriAdi</td>
+                <td>@randevu.Calisan</td>
+                <td>@randevu.Islem</td>
+                <td>@randevu.Tarih.ToString("yyyy-MM-dd HH:mm")</td>
+                <td>@randevu.Ucret.ToString("C")</td>
+                <td>
+                    <a href="@Url.Action("Edit", "Randevu", new { id = randevu.Id })" class="btn btn-primary">Düzenle</a>
+                    <a href="@Url.Action("Delete", "Randevu", new { id = randevu.Id })" class="btn btn-danger">Sil</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a href="@Url.Action("Create", "Randevu")" class="btn btn-success">Yeni Randevu Ekle</a>

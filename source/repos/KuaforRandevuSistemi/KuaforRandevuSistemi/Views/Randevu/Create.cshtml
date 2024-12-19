@@ -1,0 +1,46 @@
+﻿@model KuaforRandevuSistemi.Models.Randevu
+
+@{
+    ViewData["Title"] = "Yeni Randevu Ekle";
+}
+
+<h2>Yeni Randevu Ekle</h2>
+
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label for="MusteriAdi">Müşteri Adı</label>
+        <input type="text" id="MusteriAdi" name="MusteriAdi" class="form-control" required />
+    </div>
+
+    <div class="form-group">
+        <label for="CalisanId">Çalışan</label>
+        <select id="CalisanId" name="CalisanId" class="form-control" required>
+            <option value="">-- Seçiniz --</option>
+            @* Çalışanları burada döngüyle ekleyeceğiz *@
+            @if (ViewBag.Calisanlar != null)
+            {
+                foreach (var calisan in ViewBag.Calisanlar)
+                {
+                    <option value="@calisan.Id">@calisan.Ad</option>
+                }
+            }
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="Islem">İşlem</label>
+        <input type="text" id="Islem" name="Islem" class="form-control" required />
+    </div>
+
+    <div class="form-group">
+        <label for="Tarih">Randevu Tarihi</label>
+        <input type="datetime-local" id="Tarih" name="Tarih" class="form-control" required />
+    </div>
+
+    <div class="form-group">
+        <label for="Ucret">Ücret</label>
+        <input type="number" id="Ucret" name="Ucret" class="form-control" step="0.01" required />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Kaydet</button>
+</form>
